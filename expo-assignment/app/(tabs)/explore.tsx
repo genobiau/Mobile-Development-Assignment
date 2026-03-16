@@ -5,7 +5,7 @@ export default function ExploreTrafficNSW() {
     <View style={styles.container}>
       <Text style={styles.title}>Explore NSW Traffic</Text>
       <Text style={styles.paragraph}>
-        Browse NSW traffic information by region or incident type.
+        Browse NSW traffic information by region:
       </Text>
 
       <View style={styles.list}>
@@ -16,12 +16,7 @@ export default function ExploreTrafficNSW() {
 
         <View style={styles.row}>
           <Text style={styles.bullet}>•</Text>
-          <Text style={styles.itemText}>Western NSW</Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.bullet}>•</Text>
-          <Text style={styles.itemText}>North Sydney</Text>
+          <Text style={styles.itemText}>Southern NSW</Text>
         </View>
 
         <View style={styles.row}>
@@ -31,12 +26,43 @@ export default function ExploreTrafficNSW() {
 
         <View style={styles.row}>
           <Text style={styles.bullet}>•</Text>
-          <Text style={styles.itemText}>South Sydney</Text>
+          <Text style={styles.itemText}>Western Sydney</Text>
         </View>
 
         <View style={styles.row}>
           <Text style={styles.bullet}>•</Text>
-          <Text style={styles.itemText}>Western Sydney</Text>
+          <Text style={styles.itemText}>North Sydney</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bullet}>•</Text>
+          <Text style={styles.itemText}>South Sydney</Text>
+        </View>
+      </View>
+
+      <Text style={styles.paragraph}>
+        Browse NSW traffic information by incidents type:
+      </Text>
+
+      <View style={styles.list}>
+        <View style={styles.row}>
+          <Text style={styles.bullet}>•</Text>
+          <Text style={styles.itemText}>Accident</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bullet}>•</Text>
+          <Text style={styles.itemText}>Hazard</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bullet}>•</Text>
+          <Text style={styles.itemText}>Building Fire</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bullet}>•</Text>
+          <Text style={styles.itemText}>Scheduled Roadwork</Text>
         </View>
       </View>
 

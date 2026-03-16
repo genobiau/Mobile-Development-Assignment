@@ -1,11 +1,17 @@
+import { Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function ExploreTrafficNSW() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Explore NSW Traffic</Text>
+      <Text style={styles.title}>
+        Welcome to the NSW Traffic Incidents Page
+      </Text>
       <Text style={styles.paragraph}>
-        Browse NSW traffic information by region:
+        Browse NSW traffic information by{' '}
+        <Link href="/home" style={styles.link}>
+          region:
+        </Link>
       </Text>
 
       <View style={styles.list}>
@@ -41,7 +47,10 @@ export default function ExploreTrafficNSW() {
       </View>
 
       <Text style={styles.paragraph}>
-        Browse NSW traffic information by incidents type:
+        Browse NSW traffic information by{' '}
+        <Link href="/home" style={styles.link}>
+          incidents type:
+        </Link>
       </Text>
 
       <View style={styles.list}>
@@ -78,30 +87,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#53f7aa',
+    backgroundColor: '#f1eef5',
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 12,
+    marginTop: 12,
+  },
+  link: {
+    fontWeight: 'bold',
   },
   paragraph: {
-    fontSize: 16,
+    fontSize: 20,
     marginBottom: 20,
+    marginTop: 20,
   },
   list: {
     marginTop: 10,
+    marginBottom: 10,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    marginTop: 10,
   },
   bullet: {
-    fontSize: 18,
+    fontSize: 20,
     marginRight: 8,
   },
   itemText: {
-    fontSize: 16,
+    fontSize: 20,
   },
 });

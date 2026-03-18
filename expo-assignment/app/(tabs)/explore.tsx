@@ -94,14 +94,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 12,
     marginTop: 12,
+    fontFamily: 'Arial',
   },
   link: {
     fontWeight: 'bold',
+    fontFamily: 'Arial',
+    fontSize: 20,
   },
   paragraph: {
     fontSize: 20,
     marginBottom: 20,
     marginTop: 20,
+    fontFamily: 'Arial',
   },
   list: {
     marginTop: 10,
@@ -116,8 +120,10 @@ const styles = StyleSheet.create({
   bullet: {
     fontSize: 20,
     marginRight: 8,
+    fontFamily: 'Arial',
   },
   itemText: {
     fontSize: 20,
+    fontFamily: 'Arial',
   },
 });

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 interface incident {
-  name: string;
+  regions: string;
   streetName: string;
 }
 export default function SaveIncidentsPage() {

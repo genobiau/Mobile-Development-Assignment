@@ -150,7 +150,7 @@ export default function SearchPage() {
           onChange={onWebDateChange}
           style={{
             padding: 10,
-            fontSize: 14,
+            fontSize: 16,
             borderRadius: 8,
             border: '1px solid #999',
             backgroundColor: '#fff',
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
   },
   label: {
-    fontSize: 14,
+    fontSize: 16,
     marginBottom: 12,
     padding: 12,
     fontWeight: 'bold',
@@ -193,11 +193,11 @@ const styles = StyleSheet.create({
   picker: {
     marginBottom: 12,
     padding: 12,
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'Arial',
   },
   input: {
-    fontSize: 14,
+    fontSize: 16,
     borderWidth: 1,
     borderColor: '#999',
     borderRadius: 8,

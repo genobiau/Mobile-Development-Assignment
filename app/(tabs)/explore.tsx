@@ -7,6 +7,7 @@ export default function ExploreTrafficNSW() {
       <Text style={styles.title}>
         Welcome to the NSW Traffic Incidents Page
       </Text>
+
       <Text style={styles.paragraph}>
         Browse NSW traffic information by{' '}
         <Link href="/home" style={styles.link}>
@@ -88,6 +89,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#f1eef5',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 30,
@@ -95,35 +98,41 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     marginTop: 12,
     fontFamily: 'Arial',
+    textAlign: 'center',
   },
   link: {
     fontWeight: 'bold',
     fontFamily: 'Arial',
-    fontSize: 20,
+    fontSize: 16,
+    textAlign: 'center',
   },
   paragraph: {
-    fontSize: 20,
+    fontSize: 16,
     marginBottom: 20,
     marginTop: 20,
     fontFamily: 'Arial',
+    textAlign: 'center',
   },
   list: {
     marginTop: 10,
     marginBottom: 10,
+    alignItems: 'center',
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 10,
     marginTop: 10,
   },
   bullet: {
-    fontSize: 20,
+    fontSize: 16,
     marginRight: 8,
     fontFamily: 'Arial',
   },
   itemText: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'Arial',
+    textAlign: 'center',
   },
 });

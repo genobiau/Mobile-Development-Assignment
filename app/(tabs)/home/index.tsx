@@ -1,42 +1,56 @@
 import { Link } from 'expo-router';
-import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-export default function Homepage() {
-  const [region, clickRegion] = useState('');
-  const [incident, clickIncident] = useState('');
-  const [nameOfStreet, clickStreetName] = useState('');
-  const [date, clickDate] = useState('');
-
+export default function HomePage() {
   return (
-    <View>
-      <View>
-        <Link href="/home/search-incidents">
-          <Text>
-            Go to Search Incidents to search NSW Traffic Incidents through
-            region, incidents, street name and date (within 3months)
-          </Text>
-        </Link>
-      </View>
-      <View>
-        <Link href="/home/incidents">
-          <Text>Go to Incidents to view NSW Traffic Incidents</Text>
-        </Link>
-      </View>
-      <View>
-        <View>
-          <Link href="/home/incidents">
-            <Text>Go to Incidents to view all the NSW Traffic Incidents</Text>
-          </Link>
-        </View>
-        <View>
-          <Link href="/home/saved-incidents">
-            <Text>
-              Go to Saved Incidents to view all the saved NSW Traffic Incidents
-            </Text>
-          </Link>
-        </View>
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.title}>NSW Traffic Incidents</Text>
+      <Text style={styles.subtitle}>Choose an option below</Text>
+
+      <Link href="/home/search-incidents" style={styles.linkButton}>
+        Search incidents by region, type, street name, and date
+      </Link>
+
+      <Link href="/home/incidents" style={styles.linkButton}>
+        View all NSW traffic incidents
+      </Link>
+
+      <Link href="/home/saved-incidents" style={styles.linkButton}>
+        View saved NSW traffic incidents
+      </Link>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f1eef5',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+    fontFamily: 'Arial',
+  },
+  subtitle: {
+    fontSize: 16,
+    fontFamily: 'Arial',
+    textAlign: 'center',
+    marginBottom: 30,
+    color: '#555',
+  },
+  linkButton: {
+    backgroundColor: '#ffffff',
+    padding: 16,
+    borderRadius: 10,
+    marginBottom: 14,
+    textAlign: 'center',
+    color: '#222',
+    fontSize: 16,
+    overflow: 'hidden',
+  },
+});

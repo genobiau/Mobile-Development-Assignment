@@ -8,15 +8,15 @@ export default function HomePage() {
       <Text style={styles.subtitle}>Choose an option below</Text>
 
       <Link href="/home/search-incidents" style={styles.linkButton}>
-        Search incidents by region, type, street name, and date
+        Search incidents by Region, Type, Street name, and Date
       </Link>
 
       <Link href="/home/incidents" style={styles.linkButton}>
-        View all NSW traffic incidents
+        View all NSW Traffic Incidents
       </Link>
 
       <Link href="/home/saved-incidents" style={styles.linkButton}>
-        View saved NSW traffic incidents
+        View saved NSW Traffic Incidents
       </Link>
     </View>
   );

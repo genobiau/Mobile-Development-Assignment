@@ -1,80 +1,44 @@
 import { Picker } from '@react-native-picker/picker';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { fetchNSWIncidents } from '../../../services/nswTrafficAPI';
 
 export default function SearchPage() {
+  const router = useRouter();
+
   const regions = [
-    'Northern NSW',
-    'Western NSW',
-    'Southern NSW',
-    'Western Sydney',
-    'North Sydney',
-    'Metro Sydney',
-    'South Sydney',
+    { label: 'All Regions', value: '' },
+    { label: 'Sydney', value: 'sydney' },
+    { label: 'Northern', value: 'north' },
+    { label: 'Southern', value: 'south' },
+    { label: 'Western', value: 'west' },
+    { label: 'Metro', value: 'metro' },
+    { label: 'Central Coast', value: 'central coast' },
   ];
 
-  const incidents = [
-    'Accident',
-    'Hazard',
-    'Building Fire',
-    'Scheduled Roadwork',
+  const incidentTypes = [
+    { label: 'All Incident Types', value: '' },
+    { label: 'Accident / Crash', value: 'accident' },
+    { label: 'Hazard', value: 'hazard' },
+    { label: 'Fire', value: 'fire' },
+    { label: 'Roadwork', value: 'roadwork' },
+    { label: 'Traffic Conditions', value: 'traffic conditions' },
   ];
 
   const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedIncident, setSelectedIncident] = useState('');
+  const [selectedIncidentType, setSelectedIncidentType] = useState('');
   const [streetName, setStreetName] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const loadIncidents = async () => {
-    try {
-      const data = await fetchNSWIncidents();
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.log('Error fetching NSW incidents:', error);
-      return null;
-    }
-  };
-
-  const findRegion = async () => {
-    const data = await loadIncidents();
-    if (!data) return;
-
-    console.log('Selected region:', selectedRegion);
-  };
-
-  const findIncident = async () => {
-    const data = await loadIncidents();
-    if (!data) return;
-
-    console.log('Selected incident:', selectedIncident);
-  };
-
-  const findStreetName = async () => {
-    const data = await loadIncidents();
-    if (!data) return;
-
-    console.log('Selected street name:', streetName);
-  };
-
-  const findDate = async () => {
-    const data = await loadIncidents();
-    if (!data) return;
-
-    console.log('Selected date:', selectedDate.toDateString());
+  const formatDateForInput = (date: Date) => {
+    return date.toISOString().split('T')[0];
   };
 
   const withinThreeMonths = (date: Date) => {
     const today = new Date();
     const threeMonthsAgo = new Date();
     threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-
     return date >= threeMonthsAgo && date <= today;
-  };
-
-  const formatDateForInput = (date: Date) => {
-    return date.toISOString().split('T')[0];
   };
 
   const today = new Date();
@@ -89,59 +53,71 @@ export default function SearchPage() {
 
     if (withinThreeMonths(pickedDate)) {
       setSelectedDate(pickedDate);
-    } else {
-      console.log('Date must be within the last 3 months');
     }
+  };
+
+  const goToIncidentsPage = () => {
+    router.push({
+      pathname: '/home/incidents',
+      params: {
+        region: selectedRegion,
+        incidentType: selectedIncidentType,
+        streetName: streetName.trim(),
+        date: selectedDate.toISOString(),
+      },
+    });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>NSW Traffic Incidents</Text>
+      <Text style={styles.title}>NSW Traffic Incidents Search</Text>
 
       <View style={styles.section}>
-        <Text style={styles.label}>Select Region</Text>
+        <Text style={styles.label}>Region</Text>
         <Picker
           selectedValue={selectedRegion}
           onValueChange={(itemValue) => setSelectedRegion(itemValue)}
           style={styles.picker}
         >
-          <Picker.Item label="Select a NSW Region" value="" />
           {regions.map((region) => (
-            <Picker.Item key={region} label={region} value={region} />
+            <Picker.Item
+              key={region.label}
+              label={region.label}
+              value={region.value}
+            />
           ))}
         </Picker>
-        <Button title="Search by Region" onPress={findRegion} />
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.label}>Select Incident Type</Text>
+        <Text style={styles.label}>Incident Type</Text>
         <Picker
-          selectedValue={selectedIncident}
-          onValueChange={(itemValue) => setSelectedIncident(itemValue)}
+          selectedValue={selectedIncidentType}
+          onValueChange={(itemValue) => setSelectedIncidentType(itemValue)}
           style={styles.picker}
         >
-          <Picker.Item label="Select Incident Type" value="" />
-          {incidents.map((incident) => (
-            <Picker.Item key={incident} label={incident} value={incident} />
+          {incidentTypes.map((incident) => (
+            <Picker.Item
+              key={incident.label}
+              label={incident.label}
+              value={incident.value}
+            />
           ))}
         </Picker>
-        <Button title="Search by Incident Type" onPress={findIncident} />
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.label}>Type Street Name</Text>
+        <Text style={styles.label}>Street Name</Text>
         <TextInput
           style={styles.input}
-          placeholder="Enter Street Name"
+          placeholder="Enter street name"
           value={streetName}
           onChangeText={setStreetName}
         />
-        <Button title="Search by Street Name" onPress={findStreetName} />
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.label}>Select Date</Text>
-
+        <Text style={styles.label}>Date</Text>
         <input
           type="date"
           value={formatDateForInput(selectedDate)}
@@ -155,13 +131,13 @@ export default function SearchPage() {
             border: '1px solid #999',
             backgroundColor: '#fff',
             marginBottom: 12,
-            width: 200,
+            width: 220,
             fontFamily: 'Arial',
           }}
         />
-
-        <Button title="Search by Date" onPress={findDate} />
       </View>
+
+      <Button title="Search Incidents" onPress={goToIncidentsPage} />
     </View>
   );
 }
@@ -195,6 +171,7 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 16,
     fontFamily: 'Arial',
+    borderRadius: 8,
   },
   input: {
     fontSize: 16,

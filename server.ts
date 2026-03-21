@@ -1,25 +1,19 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
-import type { Request, Response } from 'express';
 import express from 'express';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/nsw-incidents', async (_req: Request, res: Response) => {
+app.get('/api/nsw-incidents', async (_req, res) => {
   try {
-    if (!process.env.NSW_API_KEY) {
-      return res.status(500).json({ error: 'Missing NSW_API_KEY' });
-    }
-
     const response = await fetch(
-      'https://api.transport.nsw.gov.au/v1/live/hazards/incident',
+      'https://api.transport.nsw.gov.au/v1/live/hazards/incident/all',
       {
+        method: 'GET',
         headers: {
           Authorization: `apikey ${process.env.NSW_API_KEY}`,
           Accept: 'application/json',
@@ -27,19 +21,49 @@ app.get('/api/nsw-incidents', async (_req: Request, res: Response) => {
       },
     );
 
-    const data = await response.json();
+    const text = await response.text();
 
     if (!response.ok) {
-      return res.status(response.status).json(data);
+      return res.status(response.status).send(text);
     }
 
-    res.json(data);
+    res.setHeader('Content-Type', 'application/json');
+    return res.send(text);
   } catch (error) {
-    console.error('Backend fetch error:', error);
-    res.status(500).json({ error: 'Failed to fetch NSW incidents' });
+    console.error('Server error fetching NSW live incidents:', error);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.post('/api/nsw-incidents-historical', async (_req, res) => {
+  try {
+    const response = await fetch(
+      'https://api.transport.nsw.gov.au/v1/traffic/historicaldata',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `apikey ${process.env.NSW_API_KEY}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      },
+    );
+
+    const text = await response.text();
+
+    if (!response.ok) {
+      return res.status(response.status).send(text);
+    }
+
+    res.setHeader('Content-Type', 'application/json');
+    return res.send(text);
+  } catch (error) {
+    console.error('Server error fetching NSW historical incidents:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
 });

@@ -13,3 +13,21 @@ export async function fetchNSWIncidents() {
 
   return response.json();
 }
+
+export async function fetchHistoricalNSWIncidents() {
+  const response = await fetch(`${API_BASE_URL}/api/nsw-incidents-historical`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(
+      `HTTP error! status: ${response.status}, body: ${errorText}`,
+    );
+  }
+
+  return response.json();
+}

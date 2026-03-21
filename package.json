@@ -15,7 +15,10 @@
     "dev": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFiles": [
+      "./jest.setup.ts"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",

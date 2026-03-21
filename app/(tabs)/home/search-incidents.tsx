@@ -8,12 +8,12 @@ export default function SearchPage() {
 
   const regions = [
     { label: 'All Regions', value: '' },
-    { label: 'Sydney', value: 'sydney' },
-    { label: 'Northern', value: 'north' },
-    { label: 'Southern', value: 'south' },
-    { label: 'Western', value: 'west' },
-    { label: 'Metro', value: 'metro' },
-    { label: 'Central Coast', value: 'central coast' },
+    { label: 'Sydney NSW', value: 'sydney' },
+    { label: 'Northern NSW', value: 'north' },
+    { label: 'Southern NSW', value: 'south' },
+    { label: 'Western NSW', value: 'west' },
+    { label: 'Metro NSW', value: 'metro' },
+    { label: 'Central Coast NSW', value: 'central coast' },
   ];
 
   const incidentTypes = [

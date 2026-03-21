@@ -1,11 +1,17 @@
 import { Link } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 export default function HomePage() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>NSW Traffic Incidents</Text>
       <Text style={styles.subtitle}>Choose an option below</Text>
+
+      <Image
+        source={require('../../assets/images/trafficsign.png')}
+        style={styles.image}
+        resizeMode="contain"
+      />
 
       <Link href="/home/search-incidents" style={styles.linkButton}>
         Search incidents by Region, Type, Street name, and Date
@@ -35,13 +41,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     fontFamily: 'Arial',
+    color: '#222',
   },
   subtitle: {
     fontSize: 16,
     fontFamily: 'Arial',
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 20,
     color: '#555',
+  },
+  image: {
+    width: 140,
+    height: 140,
+    alignSelf: 'center',
+    marginBottom: 25,
   },
   linkButton: {
     backgroundColor: '#ffffff',

@@ -54,7 +54,7 @@ export default function SavedIncidentsPage() {
       contentContainerStyle={styles.scrollContent}
       showsVerticalScrollIndicator={true}
     >
-      <Text style={styles.title}>My Saved Incidents</Text>
+      <Text style={styles.title}>Saved NSW Traffic Incidents</Text>
 
       {savedItems.length === 0 ? (
         <Text style={styles.emptyText}>No saved incidents yet.</Text>

@@ -308,7 +308,7 @@ export default function IncidentsPage() {
             </Link>
 
             <Text style={styles.text}>Region: {incident.region}</Text>
-            <Text style={styles.text}>Street: {incident.streetName}</Text>
+            <Text style={styles.text}>Street Name: {incident.streetName}</Text>
             <Text style={styles.text}>Date: {incident.date}</Text>
 
             <View style={styles.buttonSpacing}>

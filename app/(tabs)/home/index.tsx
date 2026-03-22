@@ -8,9 +8,10 @@ export default function HomePage() {
       <Text style={styles.subtitle}>Choose an option below</Text>
 
       <Image
-        source={require('../../assets/images/trafficsign.png')}
+        source={require('../../../assets/images/trafficsign.png')}
         style={styles.image}
         resizeMode="contain"
+        testID="traffic-sign-image"
       />
 
       <Link href="/home/search-incidents" style={styles.linkButton}>

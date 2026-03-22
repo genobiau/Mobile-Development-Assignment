@@ -6,4 +6,5 @@ test('renders home page content', () => {
 
   expect(getByText('NSW Traffic Incidents')).toBeTruthy();
   expect(getByTestId('traffic-sign-image')).toBeTruthy();
+  expect(getByText('View saved NSW Traffic Incidents')).toBeTruthy();
 });
